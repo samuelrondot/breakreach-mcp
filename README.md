@@ -8,25 +8,30 @@ No local install required. The server is hosted, stateless, and speaks Streamabl
 https://api.breakreach.com/mcp
 ```
 
-## Authentication
+## Setup
 
-The server authenticates with a Bearer API key:
+A Breakreach **Pro or Agency** plan is required for MCP access.
+
+### Option 1 — OAuth (recommended, zero setup)
+
+The server supports OAuth, so OAuth-capable clients like claude.ai and Claude Desktop don't need an API key:
+
+1. In claude.ai (or Claude Desktop), go to **Settings → Connectors → Add custom connector**
+2. Paste `https://api.breakreach.com/mcp`
+3. Sign in with your Breakreach account and approve access
+
+That's it — no API key needed.
+
+### Option 2 — API key
+
+For clients that don't do OAuth (plain header-based configs), the server also accepts a Bearer API key:
 
 1. Sign in at [breakreach.com](https://www.breakreach.com)
-2. Go to **Settings → API & MCP** (available on Pro and Agency plans)
+2. Go to **Settings → API & MCP**
 3. Create an API key (it looks like `br_...`)
 4. Send it as a header: `Authorization: Bearer br_...`
 
-## Setup
-
-### Claude Desktop / claude.ai (custom connector)
-
-Add a custom connector with the remote server URL:
-
-- **URL:** `https://api.breakreach.com/mcp`
-- **Header:** `Authorization: Bearer br_YOUR_API_KEY`
-
-Or in `claude_desktop_config.json` via `mcp-remote`:
+In `claude_desktop_config.json` via `mcp-remote`:
 
 ```json
 {
@@ -44,7 +49,7 @@ Or in `claude_desktop_config.json` via `mcp-remote`:
 }
 ```
 
-### Cursor
+#### Cursor
 
 Add to `~/.cursor/mcp.json` (or your project's `.cursor/mcp.json`):
 
@@ -60,6 +65,13 @@ Add to `~/.cursor/mcp.json` (or your project's `.cursor/mcp.json`):
   }
 }
 ```
+
+## Authentication details
+
+For developers building MCP clients: the server implements OAuth 2.1 with PKCE and dynamic client registration, per the [MCP authorization spec](https://modelcontextprotocol.io/specification/basic/authorization). Discovery endpoints:
+
+- `https://api.breakreach.com/.well-known/oauth-authorization-server`
+- `https://api.breakreach.com/.well-known/oauth-protected-resource`
 
 ## Tools
 
