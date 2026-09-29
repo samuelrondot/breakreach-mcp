@@ -1,6 +1,10 @@
-# Breakreach MCP Server — run your social media from Claude, Cursor or any MCP client
+# Breakreach MCP Server — run your social media from Claude, ChatGPT, Cursor or any MCP client
 
-[Breakreach](https://www.breakreach.com) is an AI-native social media scheduling platform. Its remote [MCP](https://modelcontextprotocol.io) server lets any MCP-compatible client — Claude Desktop, claude.ai, Cursor, and more — schedule, publish, and analyze posts across **12 platforms**: X, Instagram, TikTok, Facebook, Threads, LinkedIn, YouTube, Pinterest, Bluesky, Reddit, Telegram, and Discord.
+[Breakreach](https://www.breakreach.com) is an AI-native social media scheduling platform. Its remote [MCP](https://modelcontextprotocol.io) server lets any MCP-compatible client — claude.ai, Claude Desktop, Claude Code, ChatGPT, Cursor, and more — run your social media across **12 platforms**: X, Instagram, TikTok, Facebook, Threads, LinkedIn, YouTube, Pinterest, Bluesky, Reddit, Telegram, and Discord.
+
+- **Plan and publish**: schedule posts, publish now, save drafts, edit or reschedule anything that hasn't gone out yet
+- **Manage your community**: read and reply to comments, hide or delete spam, answer direct messages
+- **Understand what works**: per-post performance, account stats, daily trends, and the full insights of any post
 
 No local install required. The server is hosted, stateless, and speaks Streamable HTTP.
 
@@ -10,19 +14,29 @@ https://api.breakreach.com/mcp
 
 ## Setup
 
-A Breakreach **Pro or Agency** plan is required for MCP access.
+MCP access requires an active Breakreach plan or free trial.
 
-### Option 1 — OAuth (recommended, zero setup)
+### Option 1 — From the connector directory (one click)
 
-The server supports OAuth, so OAuth-capable clients like claude.ai and Claude Desktop don't need an API key:
+- **Claude** (web and desktop): open [Breakreach in the Claude directory](https://claude.ai/directory/api-breakreach-com), or go to **Settings → Connectors**, find Breakreach and click **Connect**
+- **ChatGPT**: go to **Settings → Apps & Connectors**, search for Breakreach and click **Connect**
 
-1. In claude.ai (or Claude Desktop), go to **Settings → Connectors → Add custom connector**
-2. Paste `https://api.breakreach.com/mcp`
-3. Sign in with your Breakreach account and approve access
+Sign in with your Breakreach account and approve access. No API key needed.
 
-That's it — no API key needed.
+### Option 2 — Custom connector with OAuth
 
-### Option 2 — API key
+Any client that supports OAuth for remote MCP servers only needs the URL:
+
+- **claude.ai / Claude Desktop**: **Settings → Connectors → Add custom connector**, paste `https://api.breakreach.com/mcp`
+- **Claude Code**:
+
+  ```bash
+  claude mcp add --transport http breakreach https://api.breakreach.com/mcp
+  ```
+
+  then run `/mcp` inside Claude Code to sign in.
+
+### Option 3 — API key
 
 For clients that don't do OAuth (plain header-based configs), the server also accepts a Bearer API key:
 
@@ -75,28 +89,67 @@ For developers building MCP clients: the server implements OAuth 2.1 with PKCE a
 
 ## Tools
 
+23 tools. Every tool has a title and explicit `readOnlyHint`, `destructiveHint` and `openWorldHint` annotations, so clients can tell reads from writes and ask before destructive actions.
+
+### Posts
+
 | Tool | Description |
 | --- | --- |
-| `list_workspaces` | List the workspaces your API key can access |
-| `list_accounts` | List connected social accounts in a workspace |
-| `list_posts` | List scheduled, published, and failed posts |
-| `create_post` | Schedule or publish a post — supports `useNextSlot`, `tiktokSettings`, `pinterestBoardId`, `redditSubreddit` |
-| `delete_post` | Delete a scheduled post |
-| `get_analytics` | Get performance analytics for your accounts and posts |
-| `upload_media` | Upload images or videos to attach to posts |
-| `get_next_slot` | Get the next available best-time posting slot |
-| `list_pinterest_boards` | List Pinterest boards for a connected account |
+| `list_workspaces` | List your workspaces (slug, name, timezone) |
+| `list_accounts` | List the connected social accounts of a workspace |
+| `list_posts` | List draft, scheduled, published and failed posts, with metrics for published ones |
+| `create_post` | Schedule a post (explicit time or next free slot), publish it now, or save it as a draft. Platform options: `tiktokSettings`, `youtubeSettings` (title, visibility), `instagramSettings` (post or story), `pinterestBoardId`, `redditSubreddit`, `redditFlairText` |
+| `update_post` | Edit, reschedule or publish now any post that hasn't gone out yet, retry a failed post, or move a post back to drafts |
+| `delete_post` | Delete a post: scheduled posts are unscheduled, published posts are removed from Breakreach only |
+| `upload_media` | Host an image or video from a public URL so it stays available until publish time |
+| `get_next_slot` | Get the next free slot from your posting schedule |
+| `list_pinterest_boards` | List the boards of the connected Pinterest account |
+
+### Comments
+
+| Tool | Description |
+| --- | --- |
+| `list_recent_comments` | Latest comments across your Instagram, Facebook, Threads and YouTube accounts (including posts not published with Breakreach), plus replies to your X posts |
+| `get_post_comments` | Comments on one post published with Breakreach (Instagram, Facebook, Threads, X, YouTube) |
+| `reply_to_comment` | Reply to a comment on Instagram, Facebook, Threads, X or YouTube |
+| `hide_comment` | Hide or unhide a comment on Instagram, Facebook or Threads |
+| `delete_comment` | Delete a comment on Instagram or Facebook |
+
+### Direct messages
+
+| Tool | Description |
+| --- | --- |
+| `list_conversations` | List DM conversations on Instagram, Facebook Messenger and X |
+| `get_conversation_messages` | Read the messages of one conversation |
+| `send_message` | Reply to a DM (Instagram and Messenger accept replies within 24 hours of the person's last message) |
+
+### Analytics
+
+| Tool | Description |
+| --- | --- |
+| `get_content_performance` | Views, likes, comments, shares and engagement rate per post over up to a year, on Instagram, Facebook, Threads, X, YouTube and Bluesky, including posts not published with Breakreach |
+| `get_post_insights` | Everything about one post: every lifetime metric the platform exposes (reach, saves, watch time, retention…), its comments, and a comparison with your average post |
+| `get_account_stats` | Followers and 28-day views, reach and engagement for every connected account |
+| `get_account_trends` | Daily account trends over up to 90 days (Facebook Pages, Instagram, Threads) |
+| `get_post_metrics` | Views, likes, comments and shares of one post published with Breakreach |
+| `get_analytics` | Totals and top posts across everything published with Breakreach |
 
 ## Example prompts
 
-- "Schedule this post to X and LinkedIn at the next best-time slot."
+- "Write 5 posts about my product launch and schedule them at my next free slots this week."
 - "Upload this image and publish it to Instagram and Threads tomorrow at 9am."
-- "How did my TikTok posts perform this week?"
+- "Save this announcement as a draft for LinkedIn and X, I'll review it in Breakreach."
+- "Move tomorrow's LinkedIn post to Friday 9am and make it shorter."
+- "Show me the new comments on my posts, suggest a reply to each one, and hide the spam."
+- "Did I get any new DMs on Instagram? Summarize them and draft replies."
+- "Which of my posts performed best over the last 90 days, and what do they have in common?"
 - "Cross-post my latest announcement to Bluesky, Telegram, and Discord."
 
 ## Links
 
 - Website: [breakreach.com](https://www.breakreach.com)
+- Developers (REST API and MCP): [breakreach.com/developers](https://www.breakreach.com/developers)
+- Claude directory: [Breakreach connector](https://claude.ai/directory/api-breakreach-com)
 - MCP endpoint: `https://api.breakreach.com/mcp`
 
 ## License
