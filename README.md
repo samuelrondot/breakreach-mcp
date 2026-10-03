@@ -1,6 +1,6 @@
-# Breakreach MCP Server — run your social media from Claude, ChatGPT, Cursor or any MCP client
+# Breakreach MCP Server: a social media MCP server for Claude, ChatGPT, Cursor and any MCP client
 
-[Breakreach](https://www.breakreach.com) is an AI-native social media scheduling platform. Its remote [MCP](https://modelcontextprotocol.io) server lets any MCP-compatible client — claude.ai, Claude Desktop, Claude Code, ChatGPT, Cursor, and more — run your social media across **12 platforms**: X, Instagram, TikTok, Facebook, Threads, LinkedIn, YouTube, Pinterest, Bluesky, Reddit, Telegram, and Discord.
+[Breakreach](https://www.breakreach.com) is an AI-native social media scheduling platform. Its remote [MCP](https://modelcontextprotocol.io) server lets any MCP-compatible client (claude.ai, Claude Desktop, Claude Code, ChatGPT, Cursor and more) run your social media across **12 platforms**: X, Instagram, TikTok, Facebook, Threads, LinkedIn, YouTube, Pinterest, Bluesky, Reddit, Telegram, and Discord.
 
 - **Plan and publish**: schedule posts, publish now, save drafts, edit or reschedule anything that hasn't gone out yet
 - **Manage your community**: read and reply to comments, hide or delete spam, answer direct messages
@@ -16,14 +16,14 @@ https://api.breakreach.com/mcp
 
 MCP access requires an active Breakreach plan or free trial.
 
-### Option 1 — From the connector directory (one click)
+### Option 1: from the connector directory (one click)
 
 - **Claude** (web and desktop): open [Breakreach in the Claude directory](https://claude.ai/directory/api-breakreach-com), or go to **Settings → Connectors**, find Breakreach and click **Connect**
 - **ChatGPT**: go to **Settings → Apps & Connectors**, search for Breakreach and click **Connect**
 
 Sign in with your Breakreach account and approve access. No API key needed.
 
-### Option 2 — Custom connector with OAuth
+### Option 2: custom connector with OAuth
 
 Any client that supports OAuth for remote MCP servers only needs the URL:
 
@@ -36,7 +36,7 @@ Any client that supports OAuth for remote MCP servers only needs the URL:
 
   then run `/mcp` inside Claude Code to sign in.
 
-### Option 3 — API key
+### Option 3: API key
 
 For clients that don't do OAuth (plain header-based configs), the server also accepts a Bearer API key:
 
@@ -145,10 +145,29 @@ For developers building MCP clients: the server implements OAuth 2.1 with PKCE a
 - "Which of my posts performed best over the last 90 days, and what do they have in common?"
 - "Cross-post my latest announcement to Bluesky, Telegram, and Discord."
 
+## Step-by-step guides
+
+Setup steps for each network, and what each one accepts (formats and limits):
+
+| Network | Claude | ChatGPT |
+| --- | --- | --- |
+| Instagram | [Post to Instagram from Claude](https://www.breakreach.com/connect/post-to-instagram-from-claude) | [Post to Instagram from ChatGPT](https://www.breakreach.com/connect/post-to-instagram-from-chatgpt) |
+| TikTok | [Post to TikTok from Claude](https://www.breakreach.com/connect/post-to-tiktok-from-claude) | [Post to TikTok from ChatGPT](https://www.breakreach.com/connect/post-to-tiktok-from-chatgpt) |
+| X (Twitter) | [Post to X from Claude](https://www.breakreach.com/connect/post-to-x-from-claude) | [Post to X from ChatGPT](https://www.breakreach.com/connect/post-to-x-from-chatgpt) |
+| LinkedIn | [Post to LinkedIn from Claude](https://www.breakreach.com/connect/post-to-linkedin-from-claude) | [Post to LinkedIn from ChatGPT](https://www.breakreach.com/connect/post-to-linkedin-from-chatgpt) |
+| YouTube | [Post to YouTube from Claude](https://www.breakreach.com/connect/post-to-youtube-from-claude) | [Post to YouTube from ChatGPT](https://www.breakreach.com/connect/post-to-youtube-from-chatgpt) |
+| Facebook | [Post to Facebook from Claude](https://www.breakreach.com/connect/post-to-facebook-from-claude) | [Post to Facebook from ChatGPT](https://www.breakreach.com/connect/post-to-facebook-from-chatgpt) |
+| Threads | [Post to Threads from Claude](https://www.breakreach.com/connect/post-to-threads-from-claude) | [Post to Threads from ChatGPT](https://www.breakreach.com/connect/post-to-threads-from-chatgpt) |
+| Pinterest | [Post to Pinterest from Claude](https://www.breakreach.com/connect/post-to-pinterest-from-claude) | [Post to Pinterest from ChatGPT](https://www.breakreach.com/connect/post-to-pinterest-from-chatgpt) |
+| Bluesky | [Post to Bluesky from Claude](https://www.breakreach.com/connect/post-to-bluesky-from-claude) | [Post to Bluesky from ChatGPT](https://www.breakreach.com/connect/post-to-bluesky-from-chatgpt) |
+| Reddit | [Post to Reddit from Claude](https://www.breakreach.com/connect/post-to-reddit-from-claude) | [Post to Reddit from ChatGPT](https://www.breakreach.com/connect/post-to-reddit-from-chatgpt) |
+| Telegram | [Post to Telegram from Claude](https://www.breakreach.com/connect/post-to-telegram-from-claude) | [Post to Telegram from ChatGPT](https://www.breakreach.com/connect/post-to-telegram-from-chatgpt) |
+
 ## Links
 
 - Website: [breakreach.com](https://www.breakreach.com)
 - Developers (REST API and MCP): [breakreach.com/developers](https://www.breakreach.com/developers)
+- Free tools and guides (best time to post, image sizes, AI post generators): [breakreach.com/guides](https://www.breakreach.com/guides)
 - Claude directory: [Breakreach connector](https://claude.ai/directory/api-breakreach-com)
 - MCP endpoint: `https://api.breakreach.com/mcp`
 
