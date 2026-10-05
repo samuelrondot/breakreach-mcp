@@ -89,7 +89,7 @@ For developers building MCP clients: the server implements OAuth 2.1 with PKCE a
 
 ## Tools
 
-23 tools. Every tool has a title and explicit `readOnlyHint`, `destructiveHint` and `openWorldHint` annotations, so clients can tell reads from writes and ask before destructive actions.
+25 tools. Every tool has a title and explicit `readOnlyHint`, `destructiveHint` and `openWorldHint` annotations, so clients can tell reads from writes and ask before destructive actions.
 
 ### Posts
 
@@ -97,6 +97,8 @@ For developers building MCP clients: the server implements OAuth 2.1 with PKCE a
 | --- | --- |
 | `list_workspaces` | List your workspaces (slug, name, timezone) |
 | `list_accounts` | List the connected social accounts of a workspace |
+| `create_workspace` | Create a workspace for a new brand or client, with its own accounts, posts and posting schedule |
+| `create_connect_link` | Get a link where you, or a client of yours, connect social accounts to a workspace without a Breakreach login |
 | `list_posts` | List draft, scheduled, published and failed posts, with metrics for published ones |
 | `create_post` | Schedule a post (explicit time or next free slot), publish it now, or save it as a draft. Platform options: `tiktokSettings`, `youtubeSettings` (title, visibility), `instagramSettings` (post or story), `pinterestBoardId`, `redditSubreddit`, `redditFlairText` |
 | `update_post` | Edit, reschedule or publish now any post that hasn't gone out yet, retry a failed post, or move a post back to drafts |
@@ -144,6 +146,7 @@ For developers building MCP clients: the server implements OAuth 2.1 with PKCE a
 - "Did I get any new DMs on Instagram? Summarize them and draft replies."
 - "Which of my posts performed best over the last 90 days, and what do they have in common?"
 - "Cross-post my latest announcement to Bluesky, Telegram, and Discord."
+- "Create a workspace for my client Acme and give me a link so they can connect their Instagram and LinkedIn."
 
 ## Step-by-step guides
 
