@@ -100,7 +100,7 @@ For developers building MCP clients: the server implements OAuth 2.1 with PKCE a
 | `create_workspace` | Create a workspace for a new brand or client, with its own accounts, posts and posting schedule |
 | `create_connect_link` | Get a link where you, or a client of yours, connect social accounts to a workspace without a Breakreach login |
 | `list_posts` | List draft, scheduled, published and failed posts, with metrics for published ones |
-| `create_post` | Schedule a post (explicit time or next free slot), publish it now, or save it as a draft. Platform options: `tiktokSettings`, `youtubeSettings` (title, visibility), `instagramSettings` (post or story), `pinterestBoardId`, `redditSubreddit`, `redditFlairText` |
+| `create_post` | Schedule a post (explicit time or next free slot), publish it now, or save it as a draft. Platform options: `tiktokSettings`, `youtubeSettings` (title, visibility), `instagramSettings` (post or story; 2 to 10 files make an Instagram carousel), `pinterestBoardId`, `redditSubreddit`, `redditFlairText` |
 | `update_post` | Edit, reschedule or publish now any post that hasn't gone out yet, retry a failed post, or move a post back to drafts |
 | `delete_post` | Delete a post: scheduled posts are unscheduled, published posts are removed from Breakreach only |
 | `upload_media` | Host an image or video from a public URL so it stays available until publish time |
