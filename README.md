@@ -4,6 +4,7 @@
 
 - **Plan and publish**: schedule posts, publish now, save drafts, edit or reschedule anything that hasn't gone out yet
 - **Manage your community**: read and reply to comments, hide or delete spam, answer direct messages
+- **Turn comments into DMs**: on Instagram, DM everyone who comments a keyword on a post or reel ([Comment to DM](https://www.breakreach.com/comment-to-dm))
 - **Understand what works**: per-post performance, account stats, daily trends, and the full insights of any post
 
 No local install required. The server is hosted, stateless, and speaks Streamable HTTP.
@@ -89,7 +90,7 @@ For developers building MCP clients: the server implements OAuth 2.1 with PKCE a
 
 ## Tools
 
-25 tools. Every tool has a title and explicit `readOnlyHint`, `destructiveHint` and `openWorldHint` annotations, so clients can tell reads from writes and ask before destructive actions.
+29 tools. Every tool has a title and explicit `readOnlyHint`, `destructiveHint` and `openWorldHint` annotations, so clients can tell reads from writes and ask before destructive actions.
 
 ### Posts
 
@@ -125,6 +126,17 @@ For developers building MCP clients: the server implements OAuth 2.1 with PKCE a
 | `get_conversation_messages` | Read the messages of one conversation |
 | `send_message` | Reply to a DM (Instagram and Messenger accept replies within 24 hours of the person's last message) |
 
+### Comment to DM (Instagram)
+
+When someone comments a keyword on an Instagram post or reel, Breakreach sends them a DM through Instagram's private replies, and can post a public reply under the comment. One DM per person per automation, within 7 days of the comment.
+
+| Tool | Description |
+| --- | --- |
+| `list_comment_dm_rules` | List the automations with their stats (matched, sent, failed), and the latest activity of one: who commented and whether the DM went out |
+| `create_comment_dm_rule` | DM everyone who comments a keyword (or any comment) on one post, or on every post of the account. Takes the Instagram post id or a Breakreach post id |
+| `update_comment_dm_rule` | Change the keywords, the message, the public replies or the post, or pause the automation |
+| `delete_comment_dm_rule` | Delete an automation and its activity |
+
 ### Analytics
 
 | Tool | Description |
@@ -144,6 +156,7 @@ For developers building MCP clients: the server implements OAuth 2.1 with PKCE a
 - "Move tomorrow's LinkedIn post to Friday 9am and make it shorter."
 - "Show me the new comments on my posts, suggest a reply to each one, and hide the spam."
 - "Did I get any new DMs on Instagram? Summarize them and draft replies."
+- "When people comment GUIDE on my last reel, DM them the guide link and reply 'Sent!' under their comment."
 - "Which of my posts performed best over the last 90 days, and what do they have in common?"
 - "Cross-post my latest announcement to Bluesky, Telegram, and Discord."
 - "Create a workspace for my client Acme and give me a link so they can connect their Instagram and LinkedIn."
