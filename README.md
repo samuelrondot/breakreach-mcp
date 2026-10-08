@@ -1,6 +1,6 @@
 # Breakreach MCP Server: a social media MCP server for Claude, ChatGPT, Cursor and any MCP client
 
-[Breakreach](https://www.breakreach.com) is an AI-native social media scheduling platform. Its remote [MCP](https://modelcontextprotocol.io) server lets any MCP-compatible client (claude.ai, Claude Desktop, Claude Code, ChatGPT, Cursor and more) run your social media across **12 platforms**: X, Instagram, TikTok, Facebook, Threads, LinkedIn, YouTube, Pinterest, Bluesky, Reddit, Telegram, and Discord.
+[Breakreach](https://www.breakreach.com) is an AI-native social media scheduling platform. Its remote [MCP](https://modelcontextprotocol.io) server lets any MCP-compatible client (claude.ai, Claude Desktop, Claude Code, ChatGPT, Cursor and more) run your social media across **19 platforms**: Instagram, TikTok, X, LinkedIn, YouTube, Facebook, Threads, Pinterest, Bluesky, Reddit, Telegram, Discord, Slack, Mastodon, WordPress, Ghost, Dev.to, Hashnode and Tumblr.
 
 - **Plan and publish**: schedule posts, publish now, save drafts, edit or reschedule anything that hasn't gone out yet
 - **Manage your community**: read and reply to comments, hide or delete spam, answer direct messages
@@ -90,7 +90,7 @@ For developers building MCP clients: the server implements OAuth 2.1 with PKCE a
 
 ## Tools
 
-29 tools. Every tool has a title and explicit `readOnlyHint`, `destructiveHint` and `openWorldHint` annotations, so clients can tell reads from writes and ask before destructive actions.
+33 tools. Every tool has a title and explicit `readOnlyHint`, `destructiveHint` and `openWorldHint` annotations, so clients can tell reads from writes and ask before destructive actions.
 
 ### Posts
 
@@ -136,6 +136,17 @@ When someone comments a keyword on an Instagram post or reel, Breakreach sends t
 | `create_comment_dm_rule` | DM everyone who comments a keyword (or any comment) on one post, or on every post of the account. Takes the Instagram post id or a Breakreach post id |
 | `update_comment_dm_rule` | Change the keywords, the message, the public replies or the post, or pause the automation |
 | `delete_comment_dm_rule` | Delete an automation and its activity |
+
+### DM automations (Instagram, Messenger)
+
+Flows of messages, waits, conditions and handoffs that run in Instagram DMs (and Messenger for Facebook Pages) when someone DMs a keyword, mentions the account in a story, replies to a story or opens a ref link. They only reply to something the person did, within Meta's 24-hour window, and stop when a person on the team answers by hand.
+
+| Tool | Description |
+| --- | --- |
+| `list_dm_automations` | List the DM automations with their trigger, steps, ref link, status and stats (started, completed, handed off, link clicks, failed) |
+| `create_dm_automation` | Create a flow on an Instagram account or a Facebook Page: a trigger, then messages, waits, a follow check and handoffs |
+| `update_dm_automation` | Change the name, trigger or steps, or pause and resume it |
+| `delete_dm_automation` | Delete an automation with its stats and runs |
 
 ### Analytics
 
@@ -183,6 +194,8 @@ Setup steps for each network, and what each one accepts (formats and limits):
 
 - Website: [breakreach.com](https://www.breakreach.com)
 - Developers (REST API and MCP): [breakreach.com/developers](https://www.breakreach.com/developers)
+- SDKs (TypeScript, Python), CLI, agent skill and Claude Code plugin: [Breakreach/breakreach](https://github.com/Breakreach/breakreach) (`npm install breakreach`, `pip install breakreach`)
+- Setup for coding agents (Claude Code, Cursor, Codex, OpenClaw, Hermes): [breakreach.com/agents](https://www.breakreach.com/agents)
 - Free tools and guides (best time to post, image sizes, AI post generators): [breakreach.com/guides](https://www.breakreach.com/guides)
 - Claude directory: [Breakreach connector](https://claude.ai/directory/api-breakreach-com)
 - MCP endpoint: `https://api.breakreach.com/mcp`
